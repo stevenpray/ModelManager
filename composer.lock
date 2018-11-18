@@ -1,33 +1,84 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "hash": "386559b400c9ddad349523c6d4d5ea13",
-    "content-hash": "224113c8f77fd27f64ae6aec7e3cb7ea",
+    "content-hash": "ecd33a17a25478bd131ca33884b57c64",
     "packages": [
+        {
+            "name": "league/event",
+            "version": "2.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/event.git",
+                "reference": "e4bfc88dbcb60c8d8a2939a71f9813e141bbe4cd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/event/zipball/e4bfc88dbcb60c8d8a2939a71f9813e141bbe4cd",
+                "reference": "e4bfc88dbcb60c8d8a2939a71f9813e141bbe4cd",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "henrikbjorn/phpspec-code-coverage": "~1.0.1",
+                "phpspec/phpspec": "~2.0.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "League\\Event\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Frank de Jonge",
+                    "email": "info@frenky.net"
+                }
+            ],
+            "description": "Event package",
+            "keywords": [
+                "emitter",
+                "event",
+                "listener"
+            ],
+            "time": "2015-05-21T12:24:47+00:00"
+        },
         {
             "name": "pomm-project/foundation",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/pomm-project/Foundation.git",
-                "reference": "9d2a69c8e4bed8e6ab43dcc12dd0813ba3295ee1"
+                "url": "https://github.com/stevenpray/Foundation.git",
+                "reference": "1ac720ce839ee75ca8794c158c0c783fd2bb7d8a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pomm-project/Foundation/zipball/9d2a69c8e4bed8e6ab43dcc12dd0813ba3295ee1",
-                "reference": "9d2a69c8e4bed8e6ab43dcc12dd0813ba3295ee1",
+                "url": "https://api.github.com/repos/stevenpray/Foundation/zipball/1ac720ce839ee75ca8794c158c0c783fd2bb7d8a",
+                "reference": "1ac720ce839ee75ca8794c158c0c783fd2bb7d8a",
                 "shasum": ""
             },
             "require": {
                 "ext-pgsql": "*",
-                "php": ">=5.4.4",
+                "league/event": "^2.1",
+                "php": ">=5.5.9",
                 "psr/log": "~1.0"
             },
             "require-dev": {
-                "atoum/atoum": "dev-master"
+                "atoum/atoum": "^2.8 || ^3.0",
+                "squizlabs/php_codesniffer": "~2.8"
             },
             "type": "library",
             "extra": {
@@ -40,7 +91,11 @@
                     "PommProject\\Foundation\\": "sources/lib"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "PommProject\\Foundation\\Test\\": "sources/tests"
+                }
+            },
             "license": [
                 "MIT"
             ],
@@ -59,20 +114,23 @@
                 "pomm",
                 "postgresql"
             ],
-            "time": "2015-12-04 10:03:50"
+            "support": {
+                "source": "https://github.com/stevenpray/Foundation/tree/master"
+            },
+            "time": "2018-11-18T16:06:49+00:00"
         },
         {
             "name": "psr/log",
-            "version": "dev-master",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "9e45edca52cc9c954680072c93e621f8b71fab26"
+                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/9e45edca52cc9c954680072c93e621f8b71fab26",
-                "reference": "9e45edca52cc9c954680072c93e621f8b71fab26",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
+                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
                 "shasum": ""
             },
             "require": {
@@ -100,12 +158,13 @@
                 }
             ],
             "description": "Common interface for logging libraries",
+            "homepage": "https://github.com/php-fig/log",
             "keywords": [
                 "log",
                 "psr",
                 "psr-3"
             ],
-            "time": "2015-06-02 13:48:41"
+            "time": "2016-10-10T12:19:37+00:00"
         }
     ],
     "packages-dev": [
@@ -115,28 +174,31 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/atoum/atoum.git",
-                "reference": "12fa40738d417902738c9cd561868396523e8785"
+                "reference": "def510437f6854912b45e234ac8fb34301a5e7dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/atoum/atoum/zipball/12fa40738d417902738c9cd561868396523e8785",
-                "reference": "12fa40738d417902738c9cd561868396523e8785",
+                "url": "https://api.github.com/repos/atoum/atoum/zipball/def510437f6854912b45e234ac8fb34301a5e7dd",
+                "reference": "def510437f6854912b45e234ac8fb34301a5e7dd",
                 "shasum": ""
             },
             "require": {
                 "ext-hash": "*",
                 "ext-json": "*",
-                "ext-session": "*",
                 "ext-tokenizer": "*",
                 "ext-xml": "*",
-                "php": ">=5.3.3"
+                "php": "^5.6.0 || ^7.0.0 <7.4.0"
             },
             "replace": {
                 "mageekguy/atoum": "*"
             },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2"
+            },
             "suggest": {
                 "atoum/stubs": "Provides IDE support (like autocompletion) for atoum",
-                "ext-mbstring": "Provides support for UTF-8 strings"
+                "ext-mbstring": "Provides support for UTF-8 strings",
+                "ext-xdebug": "Provides code coverage report (>= 2.3)"
             },
             "bin": [
                 "bin/atoum"
@@ -144,7 +206,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.x-dev"
+                    "dev-master": "3.x-dev"
                 }
             },
             "autoload": {
@@ -154,7 +216,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "BSD"
+                "BSD-3-Clause"
             ],
             "authors": [
                 {
@@ -187,11 +249,11 @@
                 "test",
                 "unit testing"
             ],
-            "time": "2015-11-26 14:38:45"
+            "time": "2018-03-24T16:20:00+00:00"
         }
     ],
     "aliases": [],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "stability-flags": {
         "pomm-project/foundation": 20,
         "atoum/atoum": 20
@@ -199,7 +261,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.4.4",
+        "php": ">=5.5",
         "ext-pgsql": "*"
     },
     "platform-dev": []

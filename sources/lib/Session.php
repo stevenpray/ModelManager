@@ -10,6 +10,9 @@
 namespace PommProject\ModelManager;
 
 use PommProject\Foundation\Session as FoundationSession;
+use PommProject\ModelManager\Event\CreateEvent;
+use PommProject\ModelManager\Event\DeleteEvent;
+use PommProject\ModelManager\Event\UpdateEvent;
 use PommProject\ModelManager\Model\Model;
 use PommProject\ModelManager\ModelLayer\ModelLayer;
 
@@ -54,5 +57,38 @@ class Session extends FoundationSession
     public function getModelLayer($class)
     {
         return $this->getClientUsingPooler('model_layer', $class);
+    }
+
+    /**
+     * @param callable $listener
+     * @return Session
+     */
+    public function setCreateListener($listener)
+    {
+        $this->emitter->addListener(CreateEvent::class, $listener);
+
+        return $this;
+    }
+
+    /**
+     * @param callable $listener
+     * @return Session
+     */
+    public function setUpdateListener($listener)
+    {
+        $this->emitter->addListener(UpdateEvent::class, $listener);
+
+        return $this;
+    }
+
+    /**
+     * @param callable $listener
+     * @return Session
+     */
+    public function setDeleteListener($listener)
+    {
+        $this->emitter->addListener(DeleteEvent::class, $listener);
+
+        return $this;
     }
 }

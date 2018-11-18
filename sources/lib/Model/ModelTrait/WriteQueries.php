@@ -10,6 +10,9 @@
 namespace PommProject\ModelManager\Model\ModelTrait;
 
 use PommProject\Foundation\Where;
+use PommProject\ModelManager\Event\CreateEvent;
+use PommProject\ModelManager\Event\DeleteEvent;
+use PommProject\ModelManager\Event\UpdateEvent;
 use PommProject\ModelManager\Exception\ModelException;
 use PommProject\ModelManager\Model\CollectionIterator;
 use PommProject\ModelManager\Model\FlexibleEntity\FlexibleEntityInterface;
@@ -60,6 +63,9 @@ trait WriteQueries
             ->query($sql, array_values($values))
             ->current()
             ->status(FlexibleEntityInterface::STATUS_EXIST);
+
+        $emitter = $this->getSession()->getEmitter();
+        $emitter->emit(new CreateEvent($this, $entity));
 
         return $this;
     }
@@ -136,8 +142,11 @@ trait WriteQueries
         if ($iterator->isEmpty()) {
             return null;
         }
+        $entity = $iterator->current();
+        $emitter = $this->getSession()->getEmitter();
+        $emitter->emit(new UpdateEvent($this, $entity, $updates));
 
-        return $iterator->current()->status(FlexibleEntityInterface::STATUS_EXIST);
+        return $entity->status(FlexibleEntityInterface::STATUS_EXIST);
     }
 
     /**
@@ -205,6 +214,8 @@ trait WriteQueries
         $collection = $this->query($sql, $where->getValues());
         foreach ($collection as $entity) {
             $entity->status(FlexibleEntityInterface::STATUS_NONE);
+            $emitter = $this->getSession()->getEmitter();
+            $emitter->emit(new DeleteEvent($this, $entity));
         }
         $collection->rewind();
 
